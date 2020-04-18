@@ -23,7 +23,7 @@ systemctl enable docker
 docker search nexus
 ```
 
-![image-20200418165405269](/Users/chenliangzhou/Library/Application Support/typora-user-images/image-20200418165405269.png)
+![](https://raw.githubusercontent.com/matrixZCL/personal-notes/master/img/20200418202830.png)
 
 ***
 

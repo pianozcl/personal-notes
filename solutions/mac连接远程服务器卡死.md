@@ -8,7 +8,7 @@
  ServerAliveInterval 30
  ServerAliveCountMax 2
 
-![image-20200418160534469](/Users/chenliangzhou/Library/Application Support/typora-user-images/image-20200418160534469.png)
+![](https://raw.githubusercontent.com/matrixZCL/personal-notes/master/img/image-20200418160534469.png)
 
 
 

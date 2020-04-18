@@ -34,7 +34,7 @@ docker pull docker.io/sonatype/nexus3
 docker images
 ```
 
-![image-20200418165951698](/Users/chenliangzhou/Library/Application Support/typora-user-images/image-20200418165951698.png)
+![](https://raw.githubusercontent.com/matrixZCL/personal-notes/master/img/image-20200418165951698.png)
 
 ***
 
@@ -60,13 +60,13 @@ docker run -id --privileged=true --name=nexus3 -p 8081:8081 -v /home/nexus-data:
 
 6.修改nexus密码，登录守护式容器，找到初始密码，用初始密码登录并修改密码
 
-![image-20200418172640409](/Users/chenliangzhou/Library/Application Support/typora-user-images/image-20200418172640409.png)
+![](https://raw.githubusercontent.com/matrixZCL/personal-notes/master/img/image-20200418172640409.png)
 
 ```
 docker exec -it 553e05fbf184 /bin/bash
 ```
 
-![image-20200418173119809](/Users/chenliangzhou/Library/Application Support/typora-user-images/image-20200418173119809.png)
+![](https://raw.githubusercontent.com/matrixZCL/personal-notes/master/img/image-20200418173119809.png)
 
 ***
 

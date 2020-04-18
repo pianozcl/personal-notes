@@ -1,4 +1,4 @@
-```she
+```shell
  vim /etc/ssh/ssh_config
 
 ```

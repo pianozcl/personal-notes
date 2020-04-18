@@ -29,7 +29,7 @@ docker search nexus
 
 4.拉取nexus3镜像，并查看镜像
 
-```
+```shell
 docker pull docker.io/sonatype/nexus3
 docker images
 ```

@@ -18,7 +18,7 @@
 
 然后创建一个文件，写入v1，并进行add，此刻先不要commit
 
-![image-20200613004137956](../../../../Library/Application Support/typora-user-images/image-20200613004137956.png)
+![](https://raw.githubusercontent.com/pianozcl/personal-notes/master/img/20200613021235.png)
 
 会发现，新增了62文件夹，以及文件夹下的一串，其实就是SHA128哈希函数生成的hashcode
 
@@ -33,7 +33,7 @@ git cat-file -p 626799f0f   //查看文件内容
 git cat-file -t 626799f0f		//查看文件类型
 ```
 
-![image-20200613004203833](../../../../Library/Application Support/typora-user-images/image-20200613004203833.png)
+![](https://raw.githubusercontent.com/pianozcl/personal-notes/master/img/20200613021329.png)
 
 可以看到，类型为blob，这就是Git的数据对象，接下来我们创建一个空文件夹并add到暂存区
 

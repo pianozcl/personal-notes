@@ -106,8 +106,8 @@ mysql-5.7.28-1.el7.x86_64.rpm-bundle.tar
 
 #### 五.创建普通用户并授权
 
->1.创建普通用户，username为用户名，%代表能在所有主机登录
->
+1.创建普通用户，username为用户名，%代表能在所有主机登录
+
 >```mysql
 >CREATE USER 'username'@'%' IDENTIFIED BY '123456';
 >```
@@ -117,4 +117,41 @@ mysql-5.7.28-1.el7.x86_64.rpm-bundle.tar
 >```mysql
 >GRANT ALL ON *.* TO 'username'@'%';        //所有库所有表权限，具体库表权限可修改*.*
 >```
+
+#### 六.MySQL数据库的备份与恢复
+
+1.使用mysqldump进行全库备份
+
+```shell
+mysqldump -uroot -p --all-databases > /home/all.sql
+```
+
+2.使用mysqldump进行单个库备份（test为数据库名）
+
+```shell
+mysqldump -uroot -p test  > /home/test.sql
+```
+
+3.快速恢复备份
+
+```shell
+mysql -uroot -p < /home/all.sql
+```
+
+#### 七.MySQL不同版本数据库字符集问题处理
+
+1.替换字符集
+
+```shell
+sed -i "s/utf8mb4_0900_ai_ci/utf8mb4_general_ci/g" 字符集问题
+sed -i "s/utf8mb4/utf8/g"
+```
+
+2.sql_mode设置，最好直接写入mysql配置文件
+
+```shell
+SET GLOBAL sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
+```
+
+
 

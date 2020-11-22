@@ -1,0 +1,96 @@
+## 前言
+
+本片文章讲解如何通过nginx容器搭建一个静态网站
+
+#### 前置条件
+
+* 了解nginx基础配置
+* Docker基础，以及会使用Dockerfile构建镜像，可参考这篇文章[Dockerfile构建镜像与命令详解](https://blog.csdn.net/matrixZCL/article/details/109438430)
+
+***
+
+## 正文
+
+我这里已经安装好Docker环境，并拉取centos基础镜像，还是基于centos基础镜像来构建，不了解相关概念参考以上文章
+
+### 1. 创建目录编写Dockerfile
+
+我的目录结构如下，文件位置要和Dockerfile指定位置对的上
+
+![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201101135051.png)
+
+* 基于centos基础镜像安装nginx
+
+```shell
+FROM centos
+MAINTAINER zcl "pianozcl@gmail.com"
+RUN yum install -y nginx
+EXPOSE 80
+```
+
+***
+
+
+
+### 2. 构建镜像
+
+```shell
+docker build -t pianozcl/nginx_web .
+```
+
+![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201101135716.png)
+
+***
+
+
+
+### 3. 配置静态页面
+
+新建目录，用于挂载静态页面
+
+测试hello.html文件
+
+```html
+<head>
+<title>webtest</title>
+</head>
+<body>
+<h1>hello world</h1>
+</body>
+```
+
+
+
+### 4. 启动容器
+
+* -v  宿主机和容器间的目录映射
+* $PWD 是宿主机，因为我在website目录下之行该命令，可用这种变量形式代替
+
+![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201101141149.png)
+
+* /usr/share/nginx/html   docker容器root默认目录
+
+```shell
+docker run -d -p 80:80 --name website -v $PWD:/usr/share/nginx/html pianozcl/nginx_web nginx -g "daemon off;"
+```
+
+访问浏览器可以看到刚才部署的页面。若要对页面作出修改，只需要修改宿主机映射目录下的文件，无需重新启动。这也是-v参数的作用
+
+![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201101150351.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

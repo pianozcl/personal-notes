@@ -128,13 +128,13 @@ public class Test2 {
 * remove(Object o)：如果参数为对象，例如字符串，遍历删除第一个符合的元素
 * remove(int index)：如果参数为整形，删除该下标元素
 
-首先看一下**remove(Object o)**的源代码
+首先看一下**remove(Object o)** 的源代码
 
-可以看到，无论是传null，还是非null，就是遍历数组，找到符合的第一个元素删除并返回。删除元素会调用**fastRemove()**方法
+可以看到，无论是传null，还是非null，就是遍历数组，找到符合的第一个元素删除并返回。删除元素会调用**fastRemove()** 方法
 
 ![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201209125113.png)
 
-**fastRemove()**的源代码
+**fastRemove()** 的源代码
 
 我们知道，删除数组某个元素，是要移动数组后面的所有元素，因此时间复杂度是O(n)
 
@@ -197,17 +197,17 @@ int expectedModCount = modCount;
 
 #### 3.2 next()方法
 
-这里要提一下上面遇到但没有进行说明的**modCount**变量。ArrayList的新增删除过**modCount**都会+1，感觉像是记录操作次数的，很容易就能想到是为了处理多线程下产生的异常情况。下面进行debug上面贴出的测试代码，分析迭代器源代码
+这里要提一下上面遇到但没有进行说明的**modCount** 变量。ArrayList的新增删除过**modCount** 都会+1，感觉像是记录操作次数的，很容易就能想到是为了处理多线程下产生的异常情况。下面进行debug上面贴出的测试代码，分析迭代器源代码
 
-首先是**hasNext()**方法，该方法没什么好说的，但是可以体现**cursor游标**的其中一个作用
+首先是**hasNext() **方法，该方法没什么好说的，但是可以体现**cursor游标**的其中一个作用
 
 ![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201209231711.png)
 
-接着是**next()**方法，进入next()方法会先调用**checkForComodification()**，用于检查集合是否被修改。刚才说过，构造方法初始化的时候，会把modCount赋值给expectedModCount，假设遍历过程中，集合被其他线程修改，那么modCount值会改变，因此下面方法就会抛出异常。当然单线程也会出现以下异常，下面会进行说明
+接着是**next()** 方法，进入next()方法会先调用**checkForComodification()**，用于检查集合是否被修改。刚才说过，构造方法初始化的时候，会把modCount赋值给expectedModCount，假设遍历过程中，集合被其他线程修改，那么modCount值会改变，因此下面方法就会抛出异常。当然单线程也会出现以下异常，下面会进行说明
 
 ![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201209232326.png)
 
-**next()**方法很简单，就是每次调用游标+1，然后返回当前（lastRet）下标下的元素
+**next()** 方法很简单，就是每次调用游标+1，然后返回当前（lastRet）下标下的元素
 
 ![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201209233244.png)
 
@@ -239,3 +239,4 @@ Vector已经不再推荐使用了，由于逻辑和ArrayList非常相似，底�
 ![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201209145843.png)
 
 ### 
+

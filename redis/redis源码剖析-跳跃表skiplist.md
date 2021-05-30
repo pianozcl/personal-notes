@@ -26,7 +26,7 @@
 * 第二次，1.next=5<7，5.next=9>7,降级
 * 第三次，5.next=7，查找到目标结果
 
-可以看到，只需经过**四次查询，三次比较**即可找出结果，一个设计良好的跳跃表，其时间复杂度能达到**O(logn)**。这就是跳跃表，道理就是这么简单。那么下面会详细介绍Redis跳跃表的具体实现，其细节还是比较多的
+可以看到，只需经过**四次查询，三次比较**即可找出结果，一个设计良好的跳跃表，其时间复杂度能达到**O(logn)** 。这就是跳跃表，道理就是这么简单。那么下面会详细介绍Redis跳跃表的具体实现，其细节还是比较多的
 
 ![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201228001649.png)
 
@@ -45,7 +45,7 @@ Redis跳跃表的结构如下图，对照着示意图，先对其结构进行简
 
 ![](https://superzcl.oss-cn-shanghai.aliyuncs.com/PicGo/20201228002802.png)
 
-#### 2.2 跳跃表结点源码
+#### 2.2 跳跃表节点源码
 
 zskiplistNode为跳跃表的结点，定义在server.h文件中，其中
 
@@ -139,7 +139,7 @@ zskiplistNode *zslCreateNode(int level, double score, sds ele) {
 
 我们知道在单链表中，插入一个结点n需要维护前一个结点信息，以便改变指针实现插入。Redis跳表同样的道理，不过它维护的是一个长度为64的数组update[]，还需要维护一个rank[]数组用来计算排位。其源码如下
 
-从**zslInsert**方法看起，它传入zskiplist结构指针，代表向哪个跳跃表插入元素，需要插入元素的分数，和字符串值。首先声明两个数组就是上面说的。可以看到首先定义一个zskiplistNode指针类型x，从头部依次遍历
+从 **zslInsert** 方法看起，它传入zskiplist结构指针，代表向哪个跳跃表插入元素，需要插入元素的分数，和字符串值。首先声明两个数组就是上面说的。可以看到首先定义一个zskiplistNode指针类型x，从头部依次遍历
 
 #### 4.1 查找要插入的位置
 
@@ -317,7 +317,7 @@ zskiplistNode *zslInsert(zskiplist *zsl, double score, sds ele) {
 根据分值来删除结点的代码如下
 
 * 首先第一个for跟创建结点前的查找逻辑相似
-* 然后比较分值，如果相同则通过**zslDeleteNode**删除结点
+* 然后比较分值，如果相同则通过 **zslDeleteNode** 删除结点
 
 ```c
 int zslDelete(zskiplist *zsl, double score, sds ele, zskiplistNode **node) {

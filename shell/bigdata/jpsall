@@ -1,0 +1,6 @@
+#!/bin/bash
+for host in centos1 centos2 centos3
+do
+	echo =============== $host ===============
+	ssh $host jps
+done
